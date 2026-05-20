@@ -5,6 +5,7 @@ const LoginFormCmp = (props) => {
     const { changeCurrectView } = props
     
     const [dataForm, setDataForm] = useState({})
+    const [formErrors, setFormErrors] = useState({})
 
     const handleChange = e => {
         setDataForm({
@@ -15,42 +16,55 @@ const LoginFormCmp = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (!dataForm.email || !dataForm.password) return
+        if (!dataForm.email || !dataForm.password) {
+            setFormErrors({ message: "Missing required fields" })
+            return
+        }
 
         const client = new HTTPClient()
         client.login(dataForm.email, dataForm.password)
             .then(() => client.me())
             .then(res => console.log(res))
-            .then(() => window.location.href = '/')
-            .catch(err => console.log(err))
-
-        setDataForm({})
+            .then(() => {
+                setDataForm({})
+                window.location.href = '/'
+            })
+            .catch(err => {
+                setFormErrors(err.response?.data?.errors || { message: 'Server error' })
+            })
     }
 
-    const inputStyle = "border border-gray-300 rounded-md p-2"
+    const inputStyle = "border border-gray-300 rounded-md p-2 w-full focus:outline-none"
     const buttonStyle = "text-white w-full cursor-pointer rounded-md p-2 border border-white hover:border-black bg-black hover:opacity-95 transition duration-300"
     return (
         <div>
             <h2>Sign In</h2>
             <form onSubmit={handleSubmit} className="m-3 flex flex-col gap-4 mb-8">
                 <div className="flex flex-col gap-2">
-                    <input 
-                        type="email" 
-                        id="email"
-                        placeholder="Email"
-                        className={inputStyle}
-                        value={dataForm.email || ""}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="password" 
-                        id="password"
-                        placeholder="Password"
-                        className={inputStyle}
-                        minLength={8}
-                        value={dataForm.password || ""}
-                        onChange={handleChange}
-                    />
+                    <div>
+                        {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}*</p>}
+                        <input 
+                            type="email" 
+                            id="email"
+                            placeholder="Email"
+                            className={inputStyle}
+                            value={dataForm.email || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}*</p>}
+                        <input 
+                            type="password" 
+                            id="password"
+                            placeholder="Password"
+                            className={inputStyle}
+                            minLength={8}
+                            value={dataForm.password || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    {formErrors.message && <p className="text-red-500 text-sm">{formErrors.message}*</p>}
                 </div>
                 <button type="submit" className={buttonStyle}>Sign In</button>
             </form>
