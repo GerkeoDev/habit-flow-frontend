@@ -3,8 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import dayjs from "dayjs"
 import HTTPClient from "../utils/HTTPClient"
 import SideBar from "../components/SideBar"
-import check from '../assets/svgs/circle-check.svg'
-import x from '../assets/svgs/x.svg'
+import LoadingPage from "./LoadingPage"
 
 const DetailPage = () => {
     const { id } = useParams()
@@ -21,7 +20,7 @@ const DetailPage = () => {
         client.getOneHabit(id, localDate)
             .then(res => setHabit(res.data))
             .catch(err => console.log(err))
-            .finally(() => setLoading(false))
+            .finally(() => setTimeout(() => setLoading(false), 800))
     }, [])
 
     const checkToday = () => {
@@ -30,11 +29,11 @@ const DetailPage = () => {
             .catch(err => console.log(err))
     }
 
-    if (loading) return <div></div>
+    if (loading) return <LoadingPage />
 
     if (!habit) {
         return (
-            <div className="w-full h-full flex flex-col items-center justify-center text-gray-600">
+            <div className="min-h-screen flex flex-col items-center justify-center text-gray-600">
                 <p className="text-9xl">404</p>
                 <h1>Page Not Found</h1>
                 <p> The page you are looking for does not exist.</p>
@@ -47,66 +46,163 @@ const DetailPage = () => {
     )
     
     return(
-        <div className="flex flex-row">
+        <div className="min-h-screen bg-[#0f1115] text-white flex">
         <SideBar currentView={'habits'}/>
 
-        <div className="content p-5 w-full">
+        <div className="flex-1 p-8">
             <div className="p-2">
                 <button
                     onClick={() => navigate('/dashboard')}
-                    className="text-sm text-gray-500 hover:text-black cursor-pointer"
+                    className="text-sm text-gray-400 hover:text-white transition duration-200 cursor-pointer"
                 >
                     ← Back
                 </button>
             </div>
-            <div className="flex justify-between p-2 border-b border-gray-300">
+            <div className="
+                bg-[#111827]/90
+                border border-white/10
+                rounded-3xl
+                p-6
+                flex justify-between items-center
+                backdrop-blur-xl
+                shadow-[0_8px_32px_rgba(255,255,255,0.03)]
+            ">
                 <div>
-                    <h2>{habit.title}</h2>
-                    <p className="text-sm capitalize">{habit.frequency} habit</p>
+                    <h2 className="text-white">
+                        {habit.title}
+                    </h2>
+                    <p className="text-gray-400 text-sm">
+                        Daily habit
+                    </p>
                 </div>
-
                 <div>
                     <button
                         onClick={checkToday}
                         disabled={habit.stats.completedToday}
-                        className={`text-white rounded-lg py-2 px-4 border border-white hover:border-black cursor-pointer transition duration-100
-                            ${habit.stats.completedToday ? 'bg-green-600 cursor-not-allowed' : 'bg-black active:opacity-95'}
+                        className={`
+                            rounded-xl
+                            px-5
+                            py-3
+                            font-semibold
+                            transition
+                            duration-200
+                            active:scale-[0.98]
+                            cursor-pointer
+
+                            ${
+                            habit.stats.completedToday
+                            ? "bg-green-500 text-white shadow-[0_4px_32px_rgba(0,255,255,0.3)]"
+                            : "bg-white text-black hover:opacity-90 shadow-[0_4px_32px_rgba(255,255,255,0.1)]"
+                            }
                         `}
                     >
                         {habit.stats.completedToday ? 'Completed today' : 'Mark today ✓'}
                     </button>
                 </div>
             </div>
-            <div className="mt-5 border border-gray-300 rounded-md">
-                <div className="p-4 border-b border-gray-300 flex justify-between text-sm">
-                    <span>Current streak</span>
-                    <span>{habit.stats.currentStreak} {habit.frequency === 'daily' ? 'days' : 'weeks'}</span>
+            <div className="grid grid-cols-4 gap-4 mt-6">
+                <div className="
+                    bg-[#111827]/90
+                    border border-white/10
+                    rounded-3xl
+                    p-5
+                ">
+                    <div className="text-xs text-gray-500 uppercase">
+                        Current Streak
+                    </div>
+                    <div className="text-2xl font-semibold mt-2">
+                        {habit.stats.currentStreak}
+                    </div>
                 </div>
-                <div className="p-4 border-b border-gray-300 flex justify-between text-sm">
-                    <span>Best streak</span>
-                    <span>{habit.stats.bestStreak}</span>
+
+                <div className="
+                    bg-[#111827]/90
+                    border border-white/10
+                    rounded-3xl
+                    p-5
+                ">
+                    <div className="text-xs text-gray-500 uppercase">
+                        Best streak
+                    </div>
+                    <div className="text-2xl font-semibold mt-2">
+                        {habit.stats.bestStreak}
+                    </div>
                 </div>
-                <div className="p-4 border-b border-gray-300 flex justify-between text-sm">
-                    <span>Total completions</span>
-                    <span>{habit.stats.totalCompletions}</span>
+
+                <div className="
+                    bg-[#111827]/90
+                    border border-white/10
+                    rounded-3xl
+                    p-5
+                ">
+                    <div className="text-xs text-gray-500 uppercase">
+                        Total completions
+                    </div>
+                    <div className="text-2xl font-semibold mt-2">
+                        {habit.stats.totalCompletions}
+                    </div>
                 </div>
-                <div className="p-4 flex justify-between text-sm">
-                    <span>Completed today</span>
-                    <span>{habit.stats.completedToday ? <div className='h-6 w-6 flex flex-row justify-center'>Yes <img src={check} alt="Logo"/></div>: <div className='h-6 w-6 flex flex-row justify-center'>No <img src={x} alt="Logo"/></div>}</span>
+
+                <div className="
+                    bg-[#111827]/90
+                    border border-white/10
+                    rounded-3xl
+                    p-5
+                ">
+                    <div className="text-xs text-gray-500 uppercase">
+                        Completed today
+                    </div>
+                    <div className="text-2xl font-semibold mt-2">
+                        {habit.stats.completedToday ? 'Yes✅' : 'No❌'}
+                    </div>
                 </div>
             </div>
             <div className="mt-5">
-                <p className="p-2">History</p>
-                <ul className="flex flex-col border border-gray-300 rounded-md">
+                <div className="text-white mb-4">
+                    History
+                </div>
+                <ul className="
+                    bg-[#111827]/90
+                    border border-white/10
+                    rounded-3xl
+                    overflow-hidden
+                ">
                     {sortedDates.map((date, index) => (
                         <li
                             key={index}
-                            className="p-4 border-b border-gray-300 flex justify-between items-center text-sm"
+                            className="
+                                p-4
+                                border-b
+                                border-white/5
+                                flex
+                                justify-between
+                                items-center
+                                hover:bg-white/[0.03]
+                                transition
+                            "
                         >
                             <span>{dayjs(date).format('YYYY-MM-DD')}</span>
-                            <span><i className='h-6 w-6 flex justify-center'><img src={check} alt="Logo"/></i></span>
+                            <span className="
+                                bg-[rgba(0,255,255,0.05)]
+                                shadow-[0_2px_16px_rgba(0,255,255,0.1)]
+                                rounded-xl
+                            ">✅</span>
                         </li>
                     ))}
+                    {
+                        sortedDates.length === 0 && <div
+                            className="
+                                bg-[#111827]/90
+                                border border-white/10
+                                rounded-3xl
+                                p-10
+                                text-center
+                                text-gray-400
+                            "
+                        >
+                            No completions yet.
+                        </div>
+                    }
                 </ul>
             </div>
 

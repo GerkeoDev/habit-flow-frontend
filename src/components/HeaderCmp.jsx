@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import logo from '../assets/fire-icon.svg'
+import logo from '../assets/fire-icon-white.svg'
 
 const HeaderCmp = () => {
     return (
-        <div className="border-b border-gray-300 mb-4">
+        <div className="border-b border-white/10 bg-[#111827]/90 text-white">
             <div className="flex justify-between items-center p-5">
                 <Link to="/" className="text-sm flex gap-2">
                     <div className='h-5 w-5 flex justify-center'><img src={logo} alt="Logo"/></div>

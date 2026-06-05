@@ -2,13 +2,14 @@
 
 body {
   margin: 0;
+  background-color: #0f1115;
 }
 
 h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  /* color: var(--text-h); */
 }
 
 h1 {

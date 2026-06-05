@@ -26,7 +26,9 @@ class HTTPClient {
     }
 
     createHabit(data, localDate){
-        return this.instance.post('/habits', data, localDate)
+        return this.instance.post('/habits', data, {
+            params: {localDate}
+        })
     }
 
     getAllHabits(localDate){
@@ -42,7 +44,9 @@ class HTTPClient {
     }
 
     updateHabit(id, data, localDate){
-        return this.instance.put(`/habits/${id}`, data, localDate)
+        return this.instance.put(`/habits/${id}`, data, {
+            params: {localDate}
+        })
     }
 
     deleteHabit(id){

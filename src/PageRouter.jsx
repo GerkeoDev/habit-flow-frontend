@@ -8,23 +8,26 @@ import DashboardPage from './pages/DashboardPage'
 import AuthPage from './pages/AuthPage'
 import DetailPage from './pages/DetailPage'
 import HabitsPage from './pages/HabitsPage'
+import LoadingPage from './pages/LoadingPage'
 
 const PageRouter = () => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const client = new HTTPClient()
 
   useEffect(() => {
-    const client = new HTTPClient()
     client.me()
-      .then(res => setUser(res.data))
+      .then(res => {
+        setUser(res.data)
+      })
       .catch(() => {
         setUser(null)
         console.log('not logged in')
       })
-      .finally(() => setLoading(false))
+      .finally(() => setTimeout(() => setLoading(false), 800))
   }, [])
 
-  if (loading) return <div></div>//<LoadingPage />
+  if (loading) return <LoadingPage />
 
   return (
     <>

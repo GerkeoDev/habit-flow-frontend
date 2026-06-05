@@ -2,8 +2,7 @@ import { useState } from "react"
 import HTTPClient from "../utils/HTTPClient"
 import AuthValidation from "../utils/AuthValidation"
 
-const RegisterFormCmp = (props) => {
-    const { changeCurrectView } = props
+const RegisterFormCmp = () => {
     
     const [dataForm, setDataForm] = useState({})
     const [formErrors, setFormErrors] = useState({})
@@ -47,11 +46,8 @@ const RegisterFormCmp = (props) => {
         
     }
 
-    const inputStyle = "border border-gray-300 rounded-md p-2 w-full focus:outline-none"
-    const buttonStyle = "text-white w-full cursor-pointer rounded-md p-2 border border-white hover:border-black bg-black hover:opacity-95 transition duration-300"
     return (
         <div>
-            <h2>Register</h2>
             <form onSubmit={handleSubmit} className="m-3 flex flex-col gap-4 mb-8">
                 <div className="flex flex-col gap-2">
                     <div>
@@ -60,7 +56,21 @@ const RegisterFormCmp = (props) => {
                             type="text" 
                             id="userName"
                             placeholder="Name"
-                            className={inputStyle}
+                            className="
+                                w-full
+                                rounded-xl
+                                border border-white/10
+                                bg-white/5
+                                px-4
+                                py-3
+                                text-white
+                                placeholder:text-gray-500
+                                outline-none
+                                transition
+                                duration-200
+                                focus:border-white/20
+                                focus:bg-white/10
+                            "
                             value={dataForm.userName || ""}
                             onChange={handleChange}
                         />
@@ -71,7 +81,21 @@ const RegisterFormCmp = (props) => {
                             type="email" 
                             id="email"
                             placeholder="Email"
-                            className={inputStyle}
+                            className="
+                                w-full
+                                rounded-xl
+                                border border-white/10
+                                bg-white/5
+                                px-4
+                                py-3
+                                text-white
+                                placeholder:text-gray-500
+                                outline-none
+                                transition
+                                duration-200
+                                focus:border-white/20
+                                focus:bg-white/10
+                            "
                             value={dataForm.email || ""}
                             onChange={handleChange}
                         />
@@ -82,20 +106,45 @@ const RegisterFormCmp = (props) => {
                             type="password" 
                             id="password"
                             placeholder="Password"
-                            className={inputStyle}
+                            className="
+                                w-full
+                                rounded-xl
+                                border border-white/10
+                                bg-white/5
+                                px-4
+                                py-3
+                                text-white
+                                placeholder:text-gray-500
+                                outline-none
+                                transition
+                                duration-200
+                                focus:border-white/20
+                                focus:bg-white/10
+                            "
                             value={dataForm.password || ""}
                             onChange={handleChange}
                         />
                     </div>
                     {formErrors.message && <p className="text-red-500 text-sm">{formErrors.message}</p>}
                 </div>
-                <button type="submit" className={buttonStyle}>Register</button>
+                <button 
+                    type="submit" 
+                    className="
+                        text-black
+                        font-semibold
+                        cursor-pointer 
+                        w-full 
+                        rounded-xl 
+                        py-3
+                        bg-white 
+                        hover:opacity-90
+                        active:scale-[0.98]
+                        transition duration-200
+                        shadow-[0_8px_32px_rgba(255,255,255,0.1)]
+                        hover:shadow-[0_12px_40px_rgba(255,255,255,0.1)]
+                    "
+                >Register</button>
             </form>
-            <hr className="m-3"/>
-            <div className="flex flex-col gap-4 m-3">
-                <p className="text-sm">Do you have an account?</p>
-                <button onClick={() => changeCurrectView('Sign In')} className={buttonStyle}>Sign In</button>
-            </div>
         </div>
     )
 }

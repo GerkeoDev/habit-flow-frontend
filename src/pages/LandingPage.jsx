@@ -5,22 +5,22 @@ const LandingPage = () => {
     return (
         <div>
             <HeaderCmp />
-            <div className="p-5 w-full flex justify-center">
+            <div className="p-5 w-full flex justify-center text-white">
                 <div className="w-full max-w-xl">
-                    <div className="p-2 border-b border-gray-300">
+                    <div className="p-2 border-b border-white/10">
                         <h2>Welcome to HabitFlow</h2>
                         <p className="text-sm text-gray-500">
                             Manage your habits and track your progress every day.
                         </p>
                     </div>
-                    <ul className="mt-5 flex flex-col border border-gray-300 rounded-md">
-                        <li className="p-4 border-b border-gray-300 text-sm">
+                    <ul className="mt-5 flex flex-col border border-white/10 rounded-md bg-[#111827]/90">
+                        <li className="p-4 border-b border-white/10 text-sm">
                             Track daily and weekly habits
                         </li>
-                        <li className="p-4 border-b border-gray-300 text-sm">
+                        <li className="p-4 border-b border-white/10 text-sm">
                             Automatic streak calculation
                         </li>
-                        <li className="p-4 border-b border-gray-300 text-sm">
+                        <li className="p-4 border-b border-white/10 text-sm">
                             View detailed history and progress
                         </li>
                         <li className="p-4 text-sm">
@@ -30,7 +30,25 @@ const LandingPage = () => {
                     <div className="mt-5">
                         <Link
                             to="/account"
-                            className="text-white w-full block text-center rounded-lg py-2 px-4 bg-black active:opacity-95 border border-white hover:border-black cursor-pointer transition duration-100"
+                            className="
+                                w-full
+                                block
+                                text-center
+                                rounded-xl
+                                bg-white
+                                py-3
+                                text-sm
+                                font-semibold
+                                text-black
+                                transition
+                                duration-200
+                                hover:opacity-90
+                                hover:scale-[1.01]
+                                active:scale-[0.98]
+                                cursor-pointer
+                                shadow-[0_4px_16px_rgba(255,255,255,0.07)]
+                                hover:shadow-[0_6px_20px_rgba(255,255,255,0.07)]
+                            "
                         >Login</Link>
                     </div>
                 </div>
