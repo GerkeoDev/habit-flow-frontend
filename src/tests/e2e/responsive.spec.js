@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-async function mockApi(page) {
+async function mockApi(page, options = {}) {
   page.on('pageerror', err => console.log('[PAGE ERROR]', err.message))
 
   await page.route(/\/api\//, async route => {
@@ -12,6 +12,18 @@ async function mockApi(page) {
         contentType: 'application/json',
         body: JSON.stringify({ userName: 'Test' }),
       })
+    } else if (options.withDetail && /\/habits\/\d+/.test(url)) {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          _id: '1',
+          title: 'Read',
+          frequency: 'daily',
+          stats: { currentStreak: 5, bestStreak: 10, totalCompletions: 42, completedToday: false },
+          completedDates: [],
+        }),
+      })
     } else {
       await route.fulfill({
         status: 200,
@@ -19,23 +31,6 @@ async function mockApi(page) {
         body: JSON.stringify([]),
       })
     }
-  })
-}
-
-async function mockHabitDetail(page) {
-  await page.route(/\/api\/habits\/\d+/, async route => {
-    console.log('[API HABIT DETAIL]', route.request().url())
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({
-        _id: '1',
-        title: 'Read',
-        frequency: 'daily',
-        stats: { currentStreak: 5, bestStreak: 10, totalCompletions: 42, completedToday: false },
-        completedDates: [],
-      }),
-    })
   })
 }
 
@@ -58,8 +53,7 @@ test.describe('Responsive UI - Desktop', () => {
   })
 
   test('stats grid shows 4 columns on desktop', async ({ page }) => {
-    await mockApi(page)
-    await mockHabitDetail(page)
+    await mockApi(page, { withDetail: true })
     await page.goto('/habits/1', { waitUntil: 'load' })
     const statsGrid = page.locator('.grid').first()
     const box = await statsGrid.boundingBox()
@@ -101,8 +95,7 @@ test.describe('Responsive UI - Mobile', () => {
   })
 
   test('stats grid stacks in 1 column on mobile', async ({ page }) => {
-    await mockApi(page)
-    await mockHabitDetail(page)
+    await mockApi(page, { withDetail: true })
     await page.goto('/habits/1', { waitUntil: 'load' })
     const statsGrid = page.locator('.grid').first()
     const box = await statsGrid.boundingBox()
