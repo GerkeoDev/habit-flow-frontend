@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export const useHabitStore = create((set, get) => ({
+export const useHabitStore = create((set) => ({
   habits: [],
   loading: false,
   setHabits: (habits) => set({ habits }),

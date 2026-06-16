@@ -10,7 +10,6 @@ import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Skeleton from '../components/ui/Skeleton'
 import Toast from '../components/ui/Toast'
-import { useToastStore } from '../store/toastStore'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 
 const DetailPage = () => {

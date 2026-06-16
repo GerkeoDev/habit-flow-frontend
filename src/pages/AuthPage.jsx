@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Flame, Sparkles, CheckCircle2 } from 'lucide-react'
+import { Flame, CheckCircle2 } from 'lucide-react'
 import HeaderCmp from '../components/HeaderCmp'
 import LoginFormCmp from '../components/LoginFormCmp'
 import RegisterFormCmp from '../components/RegisterFormCmp'
