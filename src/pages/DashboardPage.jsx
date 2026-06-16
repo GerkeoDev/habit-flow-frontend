@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
 
@@ -22,8 +22,7 @@ const DashboardPage = () => {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const client = new HTTPClient()
-    
+    const client = useMemo(() => new HTTPClient(), [])
 
     useEffect(() => {
         const localDate = dayjs().format('YYYY-MM-DD')
@@ -31,7 +30,7 @@ const DashboardPage = () => {
             .then(res => setHabits(res.data))
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
-    }, [])
+    }, [client])
 
     const createOrUpdateHabit = async (data) => {
         const localDate = dayjs().format('YYYY-MM-DD')

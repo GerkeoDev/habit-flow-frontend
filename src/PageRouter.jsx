@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AuthContext } from './context/AuthContext'
 import { PublicRoute, PrivateRoute } from './components/RouteGuards'
 import LandingPage from './pages/LandingPage'
@@ -13,7 +13,7 @@ import LoadingPage from './pages/LoadingPage'
 const PageRouter = () => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  const client = new HTTPClient()
+  const client = useMemo(() => new HTTPClient(), [])
 
   useEffect(() => {
     client.me()
@@ -25,7 +25,7 @@ const PageRouter = () => {
         console.log('not logged in')
       })
       .finally(() => setTimeout(() => setLoading(false), 800))
-  }, [])
+  }, [client])
 
   if (loading) return <LoadingPage />
 
