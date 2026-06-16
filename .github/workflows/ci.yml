@@ -36,6 +36,8 @@ jobs:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
+      - name: Create .env for API URL
+        run: echo "VITE_API_URL=http://localhost:8000/api/" > .env
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
       - name: Start dev server
