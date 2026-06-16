@@ -1,12 +1,17 @@
 import axios from 'axios'
 const apiUrl = import.meta.env.VITE_API_URL
 
+let instance = null
+
 class HTTPClient {
     constructor(){
-        this.instance = axios.create({
-            baseURL: apiUrl,
-            withCredentials: true
-        })
+        if (!instance) {
+            instance = axios.create({
+                baseURL: apiUrl,
+                withCredentials: true
+            })
+        }
+        this.instance = instance
     }
 
     me(){
@@ -56,7 +61,6 @@ class HTTPClient {
     checkHabit(id, localDate){
         return this.instance.put(`/habits/${id}/check`, {localDate: localDate})
     }
-
 }
 
 export default HTTPClient

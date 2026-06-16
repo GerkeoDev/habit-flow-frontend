@@ -18,7 +18,7 @@ describe('SideBar', () => {
     renderSideBar()
     expect(screen.getByText('Dashboard')).toBeInTheDocument()
     expect(screen.getByText('Habits')).toBeInTheDocument()
-    expect(screen.getByText('My account')).toBeInTheDocument()
+    expect(screen.getByText('My Account')).toBeInTheDocument()
   })
 
   it('renders Logout button', () => {
@@ -34,7 +34,7 @@ describe('SideBar', () => {
 
   it('renders hamburger button for mobile', () => {
     renderSideBar()
-    const hamburger = document.querySelector('button svg line')
+    const hamburger = document.querySelector('.lucide-menu')
     expect(hamburger).toBeInTheDocument()
   })
 })

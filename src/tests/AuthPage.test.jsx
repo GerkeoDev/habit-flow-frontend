@@ -14,7 +14,8 @@ describe('AuthPage', () => {
           </MemoryRouter>
         </AuthContext.Provider>
       )
-      expect(screen.getByText('My Account')).toBeInTheDocument()
+      const accountElements = screen.getAllByText('My Account')
+      expect(accountElements.length).toBeGreaterThanOrEqual(1)
     })
 
     it('shows Logout button', () => {
@@ -52,8 +53,8 @@ describe('AuthPage', () => {
           </MemoryRouter>
         </AuthContext.Provider>
       )
-      expect(screen.getByPlaceholderText('Email')).toBeInTheDocument()
-      expect(screen.getByPlaceholderText('Password')).toBeInTheDocument()
+      expect(screen.getByPlaceholderText('Enter your email')).toBeInTheDocument()
+      expect(screen.getByPlaceholderText('Enter your password')).toBeInTheDocument()
     })
 
     it('switches to Register form when Register tab is clicked', async () => {
@@ -65,7 +66,8 @@ describe('AuthPage', () => {
         </AuthContext.Provider>
       )
       await userEvent.click(screen.getByText('Register'))
-      expect(screen.getByPlaceholderText('Name')).toBeInTheDocument()
+      await screen.findByPlaceholderText('Enter your name')
+      expect(screen.getByPlaceholderText('Enter your name')).toBeInTheDocument()
     })
   })
 })

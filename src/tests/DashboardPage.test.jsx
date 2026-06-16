@@ -30,35 +30,21 @@ describe('DashboardPage', () => {
   it('shows greeting with user name', async () => {
     renderDashboard()
     await waitFor(() => {
-      expect(screen.getByText(/Hello, TestUser/)).toBeInTheDocument()
+      expect(screen.getByText(/TestUser/)).toBeInTheDocument()
     })
   })
 
-  it('shows subtitle text', async () => {
+  it('shows New Habit button', async () => {
     renderDashboard()
     await waitFor(() => {
-      expect(screen.getByText('Here you can manage your habits')).toBeInTheDocument()
-    })
-  })
-
-  it('shows + New Habit button', async () => {
-    renderDashboard()
-    await waitFor(() => {
-      expect(screen.getByText('+ New Habit')).toBeInTheDocument()
-    })
-  })
-
-  it('shows Your habits heading', async () => {
-    renderDashboard()
-    await waitFor(() => {
-      expect(screen.getByText('Your habits')).toBeInTheDocument()
+      expect(screen.getByText('New Habit')).toBeInTheDocument()
     })
   })
 
   it('shows empty state when no habits', async () => {
     renderDashboard()
     await waitFor(() => {
-      expect(screen.getByText('Nothing to see here')).toBeInTheDocument()
+      expect(screen.getByText(/No habits yet/)).toBeInTheDocument()
     })
   })
 

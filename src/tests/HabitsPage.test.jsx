@@ -27,17 +27,17 @@ describe('HabitsPage', () => {
     mockGetAllHabits.mockResolvedValue({ data: [] })
   })
 
-  it('shows + New Habit button', async () => {
+  it('shows New Habit button', async () => {
     renderHabitsPage()
     await waitFor(() => {
-      expect(screen.getByText('+ New Habit')).toBeInTheDocument()
+      expect(screen.getByText('New Habit')).toBeInTheDocument()
     })
   })
 
   it('shows empty state when no habits', async () => {
     renderHabitsPage()
     await waitFor(() => {
-      expect(screen.getByText('Nothing to see here')).toBeInTheDocument()
+      expect(screen.getByText('No habits found.')).toBeInTheDocument()
     })
   })
 
