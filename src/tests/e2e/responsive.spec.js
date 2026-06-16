@@ -10,13 +10,13 @@ async function mockApi(page) {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ data: { userName: 'Test' } }),
+        body: JSON.stringify({ userName: 'Test' }),
       })
     } else {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ data: [] }),
+        body: JSON.stringify([]),
       })
     }
   })
@@ -29,13 +29,11 @@ async function mockHabitDetail(page) {
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({
-        data: {
-          _id: '1',
-          title: 'Read',
-          frequency: 'daily',
-          stats: { currentStreak: 5, bestStreak: 10, totalCompletions: 42, completedToday: false },
-          completedDates: [],
-        },
+        _id: '1',
+        title: 'Read',
+        frequency: 'daily',
+        stats: { currentStreak: 5, bestStreak: 10, totalCompletions: 42, completedToday: false },
+        completedDates: [],
       }),
     })
   })
