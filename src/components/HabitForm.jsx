@@ -18,7 +18,7 @@ const HabitForm = ({onSubmitProp, onClose, initialData}) => {
     const isEditing = initialData.title !== ''
     return (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-[#111827]/90 p-6 rounded-3xl border border-white/10 w-full max-w-md backdrop-blur-xl shadow-2xl">
+            <div className="bg-[#111827]/90 p-6 rounded-3xl border border-white/10 w-full max-w-md backdrop-blur-xl shadow-2xl mx-4">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                     <div className="pb-4">
                         <h2 className="text-white">{isEditing ? 'Update Habit' : 'Create Habit'}</h2>

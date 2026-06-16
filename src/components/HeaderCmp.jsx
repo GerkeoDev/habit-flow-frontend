@@ -10,7 +10,7 @@ const HeaderCmp = () => {
                     HabitFlow
                 </Link>
 
-                <div className="flex gap-6 text-sm">
+                <div className="flex gap-6 text-sm flex-wrap">
                     <Link to="/">Home</Link>
                     {/* <Link to="/about">About</Link> */}
                     <Link to="/account">Login</Link>
