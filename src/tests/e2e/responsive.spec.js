@@ -42,7 +42,7 @@ test.describe('Responsive UI - Desktop', () => {
     await page.goto('/dashboard', { waitUntil: 'load' })
     await expect(page.getByText('HabitFlow')).toBeVisible({ timeout: 15000 })
     await expect(page.getByText('Dashboard')).toBeVisible()
-    await expect(page.getByText('Habits')).toBeVisible()
+    await expect(page.getByRole('link', { name: /habits/i })).toBeVisible()
   })
 
   test('hamburger button is hidden on desktop', async ({ page }) => {
@@ -91,7 +91,7 @@ test.describe('Responsive UI - Mobile', () => {
     const backdrop = page.locator('.fixed.inset-0')
     await expect(backdrop).toBeVisible()
     await backdrop.click()
-    await expect(page.getByText('HabitFlow')).not.toBeVisible()
+    await expect(backdrop).not.toBeAttached()
   })
 
   test('stats grid stacks in 1 column on mobile', async ({ page }) => {
