@@ -2,7 +2,7 @@ const CreatedConfirmation = props => {
     const { setCreatedConfirmation } = props
     return (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"> 
-            <div className="bg-[#111827]/90 p-8 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl w-full max-w-sm text-center">
+            <div className="bg-[#111827]/90 p-8 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl w-full max-w-sm text-center mx-4">
                 <h2 className="text-white">Habit created successfully!✅</h2>
                 <div className="text-gray-400 text-sm mb-6">Your habit has been added to your dashboard.</div>
                 <button className=" 

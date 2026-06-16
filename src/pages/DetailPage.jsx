@@ -49,7 +49,7 @@ const DetailPage = () => {
         <div className="min-h-screen bg-[#0f1115] text-white flex">
         <SideBar currentView={'habits'}/>
 
-        <div className="flex-1 p-8">
+        <div className="flex-1 p-4 pt-14 sm:p-6 sm:pt-0 lg:p-8">
             <div className="p-2">
                 <button
                     onClick={() => navigate('/dashboard')}
@@ -63,7 +63,7 @@ const DetailPage = () => {
                 border border-white/10
                 rounded-3xl
                 p-6
-                flex justify-between items-center
+                flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4
                 backdrop-blur-xl
                 shadow-[0_8px_32px_rgba(255,255,255,0.03)]
             ">
@@ -100,7 +100,7 @@ const DetailPage = () => {
                     </button>
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-4 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
                 <div className="
                     bg-[#111827]/90
                     border border-white/10

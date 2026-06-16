@@ -23,9 +23,9 @@ const AuthPage = () => {
     return user ? (
         <div className="flex min-h-screen bg-[#0f1115] text-white">
             <SideBar currentView={'account'} />
-            <div className="flex-1 flex items-top justify-center p-6">
+            <div className="flex-1 flex items-top justify-center p-4 sm:p-6">
                 <div className="w-full max-w-md">
-                    <div className="bg-[#111827]/90 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
+                    <div className="bg-[#111827]/90 border border-white/10 rounded-3xl p-4 sm:p-6 backdrop-blur-xl shadow-2xl">
                         <h2>My Account</h2>
                         <div className="text-sm text-gray-400 mb-6">Manage your session</div>
                         <button 
@@ -54,9 +54,9 @@ const AuthPage = () => {
         <div>
             <HeaderCmp />
             <div className="min-h-screen bg-[#0f1115] text-white flex flex-col">
-            <div className="flex-1 flex items-top justify-center p-6">
+            <div className="flex-1 flex items-top justify-center p-4 sm:p-6">
                 <div className="w-full max-w-md">
-                    <div className="bg-[#111827]/90 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
+                    <div className="bg-[#111827]/90 border border-white/10 rounded-3xl p-4 sm:p-6 backdrop-blur-xl shadow-2xl">
                         <div className="flex mb-6 bg-white/5 rounded-xl p-1">
                             <button
                                 onClick={() => setCurrentView("Sign In")}

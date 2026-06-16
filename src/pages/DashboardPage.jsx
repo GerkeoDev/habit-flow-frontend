@@ -91,8 +91,8 @@ const DashboardPage = () => {
                 createdConfirmation && <CreatedConfirmation setCreatedConfirmation={setCreatedConfirmation} />
             }
             <SideBar currentView={'dashboard'}/>
-            <div className="flex-1 p-8">
-                <div className="flex justify-between items-center mb-8">
+            <div className="flex-1 p-4 pt-14 sm:p-6 sm:pt-0 lg:p-8">
+                <div className="flex justify-between items-center mb-6 sm:mb-8">
                     <div>
                         <h2>Hello, {user?.userName}!👋</h2>
                         <p className="text-sm text-gray-400">Here you can manage your habits</p>
@@ -134,14 +134,18 @@ const DashboardPage = () => {
                                         transition 
                                         duration-200 
                                         flex 
+                                        flex-col
+                                        sm:flex-row
                                         justify-between 
-                                        items-center
+                                        items-start
+                                        sm:items-center
+                                        gap-4
                                         backdrop-blur-xl
                                         shadow-[0_8px_32px_rgba(255,255,255,0.03)]
                                         hover:shadow-[0_12px_40px_rgba(255,255,255,0.03)]
                                     "
                                 >   
-                                    <div className="flex justify-left gap-1 items-end text-sm w-1/3">
+                                    <div className="flex justify-left gap-1 items-end text-sm w-full sm:w-1/3">
                                         <p className="text-white font-medium text-lg">
                                             {habit.title}
                                         </p>

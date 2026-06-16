@@ -5,7 +5,7 @@ const LandingPage = () => {
     return (
         <div>
             <HeaderCmp />
-            <div className="p-5 w-full flex justify-center text-white">
+            <div className="p-4 sm:p-8 w-full flex justify-center text-white">
                 <div className="w-full max-w-xl">
                     <div className="p-2 border-b border-white/10">
                         <h2>Welcome to HabitFlow</h2>

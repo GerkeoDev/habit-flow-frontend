@@ -74,7 +74,7 @@ const HabitsPage = () => {
     if(loading) return <div></div>
 
     return (
-        <div className="flex flex-row">
+        <div className="min-h-screen bg-[#0f1115] text-white flex flex-row">
             {
                 showForm && <HabitForm 
                     initialData={habit}
@@ -88,7 +88,7 @@ const HabitsPage = () => {
                 createdConfirmation && <CreatedConfirmation setCreatedConfirmation={setCreatedConfirmation} />
             }
             <SideBar currentView={'habits'}/>
-            <div className="flex-1 p-8">
+            <div className="flex-1 p-4 pt-14 sm:p-6 sm:pt-0 lg:p-8">
                 <div>
                     <div>
                         <button className="
@@ -123,14 +123,18 @@ const HabitsPage = () => {
                                     transition 
                                     duration-200 
                                     flex 
+                                    flex-col
+                                    sm:flex-row
                                     justify-between 
-                                    items-center
+                                    items-start
+                                    sm:items-center
+                                    gap-4
                                     backdrop-blur-xl
                                     shadow-[0_8px_32px_rgba(255,255,255,0.03)]
                                     hover:shadow-[0_12px_40px_rgba(255,255,255,0.03)]
                                 "
                             >   
-                                <div className="flex justify-left gap-1 items-end text-sm w-1/3">
+                                <div className="flex justify-left gap-1 items-end text-sm w-full sm:w-1/3">
                                         <p className="text-white font-medium text-lg">
                                             {habit.title}
                                         </p>
