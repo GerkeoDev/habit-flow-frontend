@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import dayjs from "dayjs"
 import HTTPClient from "../utils/HTTPClient"
@@ -8,7 +8,7 @@ import LoadingPage from "./LoadingPage"
 const DetailPage = () => {
     const { id } = useParams()
     
-    const client = new HTTPClient()
+    const client = useMemo(() => new HTTPClient(), [])
     const navigate = useNavigate()
 
     const [ habit, setHabit ] = useState(null)
@@ -21,7 +21,7 @@ const DetailPage = () => {
             .then(res => setHabit(res.data))
             .catch(err => console.log(err))
             .finally(() => setTimeout(() => setLoading(false), 800))
-    }, [])
+    }, [client, id, localDate])
 
     const checkToday = () => {
         client.checkHabit(id, localDate)
