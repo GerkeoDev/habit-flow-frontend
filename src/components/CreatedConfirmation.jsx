@@ -1,26 +1,33 @@
-const CreatedConfirmation = props => {
-    const { setCreatedConfirmation } = props
-    return (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"> 
-            <div className="bg-[#111827]/90 p-8 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl w-full max-w-sm text-center mx-4">
-                <h2 className="text-white">Habit created successfully!✅</h2>
-                <div className="text-gray-400 text-sm mb-6">Your habit has been added to your dashboard.</div>
-                <button className=" 
-                            w-full
-                            rounded-xl
-                            bg-white
-                            py-3
-                            text-sm
-                            font-semibold
-                            text-black
-                            transition
-                            duration-200
-                            hover:opacity-90
-                            active:scale-[0.98]
-                            cursor-pointer
-                        " onClick={() => setCreatedConfirmation(false)}>Close</button>
-            </div>
-        </div>
-    )
+import Modal from './ui/Modal'
+import Button from './ui/Button'
+import { motion } from 'framer-motion'
+import { CheckCircle2 } from 'lucide-react'
+
+const CreatedConfirmation = ({ setCreatedConfirmation }) => {
+  return (
+    <Modal isOpen={true} onClose={() => setCreatedConfirmation(false)}>
+      <div className="flex flex-col items-center gap-4 py-4">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+        >
+          <CheckCircle2 size={64} className="text-emerald-400" />
+        </motion.div>
+        <h2 className="text-white text-lg font-semibold text-center">Habit created!</h2>
+        <p className="text-zinc-400 text-sm text-center">
+          Your habit has been added to your dashboard.
+        </p>
+        <Button
+          variant="primary"
+          className="w-full mt-2"
+          onClick={() => setCreatedConfirmation(false)}
+        >
+          Got it
+        </Button>
+      </div>
+    </Modal>
+  )
 }
+
 export default CreatedConfirmation

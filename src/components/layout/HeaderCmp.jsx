@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import logo from '../assets/fire-icon-white.svg'
-import { cn } from '../utils/cn'
-import ThemeToggle from './layout/ThemeToggle'
+import logo from '../../assets/fire-icon-white.svg'
+import { cn } from '../../utils/cn'
+import ThemeToggle from './ThemeToggle'
 
 const HeaderCmp = ({ className }) => {
   return (

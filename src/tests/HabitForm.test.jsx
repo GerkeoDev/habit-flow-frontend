@@ -24,16 +24,16 @@ describe('HabitForm', () => {
     expect(screen.getByPlaceholderText('Read 10 pages...')).toBeInTheDocument()
   })
 
-  it('renders Close and Submit buttons', () => {
+  it('renders Cancel and Submit buttons', () => {
     render(<HabitForm {...defaultProps} />)
-    expect(screen.getByText('Close')).toBeInTheDocument()
+    expect(screen.getByText('Cancel')).toBeInTheDocument()
     expect(screen.getByText('Submit')).toBeInTheDocument()
   })
 
-  it('calls onClose when Close button is clicked', async () => {
+  it('calls onClose when Cancel button is clicked', async () => {
     const onClose = vi.fn()
     render(<HabitForm {...defaultProps} onClose={onClose} />)
-    await userEvent.click(screen.getByText('Close'))
+    await userEvent.click(screen.getByText('Cancel'))
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 

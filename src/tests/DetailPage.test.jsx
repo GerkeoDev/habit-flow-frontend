@@ -52,7 +52,7 @@ describe('DetailPage', () => {
   it('shows back button', async () => {
     renderDetailPage()
     await waitFor(() => {
-      expect(screen.getByText('← Back')).toBeInTheDocument()
+      expect(screen.getByText('Back to Dashboard')).toBeInTheDocument()
     })
   })
 
@@ -60,9 +60,9 @@ describe('DetailPage', () => {
     renderDetailPage()
     await waitFor(() => {
       expect(screen.getByText('Current Streak')).toBeInTheDocument()
-      expect(screen.getByText('Best streak')).toBeInTheDocument()
-      expect(screen.getByText('Total completions')).toBeInTheDocument()
-      expect(screen.getByText('Completed today')).toBeInTheDocument()
+      expect(screen.getByText('Best Streak')).toBeInTheDocument()
+      expect(screen.getByText('Total Completions')).toBeInTheDocument()
+      expect(screen.getByText('Completed Today')).toBeInTheDocument()
     })
   })
 
@@ -75,21 +75,20 @@ describe('DetailPage', () => {
     })
   })
 
-  it('shows Mark today button when not completed', async () => {
+  it('shows Mark Today button when not completed', async () => {
     renderDetailPage()
     await waitFor(() => {
-      expect(screen.getByText('Mark today ✓')).toBeInTheDocument()
+      expect(screen.getByText('Mark Today')).toBeInTheDocument()
     })
   })
 
-  it('shows Completed today when already checked', async () => {
+  it('shows Completed when already checked', async () => {
     mockGetOneHabit.mockResolvedValue({
       data: { ...mockHabit, stats: { ...mockHabit.stats, completedToday: true } },
     })
     renderDetailPage()
     await waitFor(() => {
-      const elements = screen.getAllByText('Completed today')
-      expect(elements.length).toBeGreaterThanOrEqual(1)
+      expect(screen.getByText('Completed ✓')).toBeInTheDocument()
     })
   })
 
@@ -97,7 +96,7 @@ describe('DetailPage', () => {
     renderDetailPage()
     await waitFor(() => {
       expect(screen.getByText('History')).toBeInTheDocument()
-      expect(screen.getByText('2026-06-14')).toBeInTheDocument()
+      expect(screen.getByText('Jun 14, 2026')).toBeInTheDocument()
     })
   })
 })
